@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Prompt {
+  id        Int      @id @default(autoincrement())
+  content   String
+  category  String
+  createdAt DateTime @default(now())
+  jokes     Joke[]
+}
+
+model Joke {
+  id         Int      @id @default(autoincrement())
+  content    String
+  promptId   Int
+  prompt     Prompt   @relation(fields: [promptId], references: [id])
+  rating     Int?
+  isFavorite Boolean  @default(false)
+  createdAt  DateTime @default(now())
+}
