@@ -5,7 +5,7 @@ import { generateJoke, deletePrompt } from "../../services/api";
 interface PromptListProps {
   prompts: Prompt[];
   onDelete: () => void;
-  onGenerate: (joke: any) => void;
+  onGenerate: (joke: string) => void;
 }
 
 const PromptList: React.FC<PromptListProps> = ({
